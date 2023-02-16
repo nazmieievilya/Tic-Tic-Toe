@@ -19,7 +19,8 @@ function decidePlayer() {
   player = 2;
   // you are "O"
   ai = player == 1 ? 2 : 1;
-  playerTitle.textContent = `You Are "${player == 1 ? "X" : "O"}"`;
+  // replaced X O
+  playerTitle.textContent = `You Are "${player == 1 ? "O" : "X"}"`;
 }
 
 function clear() {
@@ -122,7 +123,7 @@ function render(array) {
   newArr.forEach((el, i) =>
     boxes[i].insertAdjacentText(
       "afterbegin",
-      el == 1 ? "X" : el == 2 ? "O" : ""
+      el == 1 ? "O" : el == 2 ? "X" : ""
     )
   );
 }
@@ -132,6 +133,13 @@ function run(event) {
   if (result >= 0) return;
   if (!player) decidePlayer();
   const number = event.target.closest(".box")?.dataset.number;
+  // if already filled
+  if (
+    array[Math.trunc(number / 3.1)][
+      number - 1 - 3 * Math.trunc(number / 3.1)
+    ] != 0
+  )
+    return;
   array[Math.trunc(number / 3.1)][number - 1 - 3 * Math.trunc(number / 3.1)] =
     player == 1 ? 1 : 2;
   clear();
