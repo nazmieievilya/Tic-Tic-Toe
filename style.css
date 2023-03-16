@@ -25,8 +25,8 @@ h1 {
   gap: 10px;
 }
 svg {
-  width: 27px;
-  height: 27px;
+  width: 30px;
+  height: 30px;
 }
 
 #o {
@@ -100,7 +100,11 @@ button:hover {
 
 @keyframes fillSvg {
   0% {
+    opacity: 0;
     stroke-dashoffset: 787;
+  }
+  20% {
+    opacity: 1;
   }
   100% {
     stroke-dashoffset: 0;
